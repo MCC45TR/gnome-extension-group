@@ -1,0 +1,39 @@
+name: Update extension sources
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y jq libglib2.0-bin zip unzip
+      - name: Rebuild deterministic source payloads
+        run: ./tools/update-sources.sh
+      - name: Validate RPM source package
+        run: |
+          sudo apt-get install -y rpm
+          rpmbuild -bs gnome-extension-group.spec \
+            --define "_sourcedir $PWD/sources" \
+            --define "_srcrpmdir $PWD"
+      - name: Publish changed payloads
+        run: |
+          if git diff --quiet -- sources sources.lock; then
+            echo 'No upstream source changes.'
+            exit 0
+          fi
+          git config user.name 'gnome-extension-group automation'
+          git config user.email 'mcc45tr@gmail.com'
+          git add sources sources.lock
+          git commit -m 'Update packaged extension sources'
+          git push
