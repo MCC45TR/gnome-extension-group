@@ -1,6 +1,6 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Independently installable GNOME touch extensions
 License:        GPL-2.0-only AND GPL-3.0-only AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
@@ -22,7 +22,7 @@ binary RPMs are intentionally independent: install only the ones you want.
 %package -n gnome-shell-extension-convergence
 Summary:        Convergence Shell for GNOME 51
 License:        GPL-3.0-or-later
-Requires:       gnome-shell >= 51
+Requires:       gnome-shell >= 51~alpha
 Requires:       gnome-extensions-app
 
 %description -n gnome-shell-extension-convergence
@@ -99,6 +99,9 @@ done
 %{_datadir}/gnome-shell/extensions/touchshell@touchshell.com
 
 %changelog
+* Wed Sep 02 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-2
+- Accept GNOME 51 prereleases used by current Fedora Rawhide
+
 * Wed Sep 02 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-1
 - Initial unified source package with three independent GNOME extensions
 - Port the packaged sources to GNOME Shell 51 APIs
