@@ -35,6 +35,9 @@ jobs:
           next=$((current + 1))
           sed -i -E "s/^Release:[[:space:]]+[0-9]+/Release:        $next/" \
             gnome-extension-group.spec
+          stamp=$(LC_ALL=C date -u '+%a %b %d %Y')
+          sed -i "/^%changelog$/a\\* $stamp mcc45tr <mcc45tr@gmail.com> - 1.0.0-$next\\n- Rebuild synchronized extension payloads\\n" \
+            gnome-extension-group.spec
       - name: Validate RPM source package
         run: |
           sudo apt-get install -y rpm
