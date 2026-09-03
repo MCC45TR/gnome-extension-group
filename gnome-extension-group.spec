@@ -1,6 +1,6 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        9%{?dist}
+Release:        8%{?dist}
 Summary:        Independently installable GNOME touch extensions
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
@@ -27,7 +27,6 @@ License:        GPL-3.0-or-later
 Requires:       gnome-shell >= 51~alpha
 Requires:       gnome-extensions-app
 Requires:       nabu-core-meta >= 3.0.0-35
-Requires:       iio-sensor-proxy
 Obsoletes:      nabu-flashlight-integration-gnome < 1.0.0-16
 Provides:       nabu-flashlight-integration-gnome = 1.0.0-16
 
@@ -145,10 +144,6 @@ test "$(find nabu/translations -name '*.po' | wc -l)" = 27
 %{_userunitdir}/graphical-session.target.wants/nabu-gnome-extension-enable.service
 
 %changelog
-* Fri Sep 04 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-9
-- Keep the accelerometer claimed while GNOME automatic rotation is unlocked.
-- Recover the claim after SensorProxy restarts without replacing Fedora Mutter.
-
 * Thu Sep 03 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-8
 - Add Nabu Tablet Controls as a fourth independently installable extension.
 - Migrate its extension identity to nabulinuxproject@mcc45tr.
