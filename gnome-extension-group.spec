@@ -1,6 +1,6 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Independently installable GNOME touch extensions
 License:        GPL-2.0-only AND GPL-3.0-only AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
