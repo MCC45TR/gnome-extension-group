@@ -19,3 +19,14 @@ The packaged downstream source forks are:
 - https://github.com/MCC45TR/convergence-shell
 - https://github.com/MCC45TR/gnome-extension-touchup
 - https://github.com/MCC45TR/touchshell
+
+## Automated updates
+
+Each fork attempts an hourly, fail-closed merge from its original upstream and
+runs its GNOME 51 validation before pushing. This repository then rebuilds the
+three deterministic payload archives hourly, increments the RPM release only
+when a payload changes, validates the source RPM, and pushes the result. A
+GitHub push webhook submits that revision to the `mcc45tr/nabu-linux` COPR.
+
+Merge conflicts, TypeScript errors, JavaScript syntax failures, missing GNOME
+51 metadata, or RPM source validation failures stop publication.
