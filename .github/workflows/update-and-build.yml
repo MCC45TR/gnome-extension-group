@@ -17,9 +17,20 @@ jobs:
         with:
           node-version: '22'
       - name: Install build dependencies
-        run: sudo apt-get update && sudo apt-get install -y jq libglib2.0-dev-bin zip unzip
+        run: sudo apt-get update && sudo apt-get install -y jq libglib2.0-dev-bin libxml2-utils zip unzip
       - name: Rebuild deterministic source payloads
         run: ./tools/update-sources.sh
+      - name: Version changed payloads
+        run: |
+          if git diff --quiet -- sources sources.lock; then
+            echo 'Payloads are unchanged.'
+            exit 0
+          fi
+          current=$(sed -nE 's/^Release:[[:space:]]+([0-9]+).*/\1/p' gnome-extension-group.spec)
+          test -n "$current"
+          next=$((current + 1))
+          sed -i -E "s/^Release:[[:space:]]+[0-9]+/Release:        $next/" \
+            gnome-extension-group.spec
       - name: Validate RPM source package
         run: |
           sudo apt-get install -y rpm
@@ -34,6 +45,6 @@ jobs:
           fi
           git config user.name 'gnome-extension-group automation'
           git config user.email 'mcc45tr@gmail.com'
-          git add sources sources.lock
+          git add gnome-extension-group.spec sources sources.lock
           git commit -m 'Update packaged extension sources'
           git push
