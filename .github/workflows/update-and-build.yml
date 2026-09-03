@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-extension-sources-main
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
