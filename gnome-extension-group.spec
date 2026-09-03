@@ -1,8 +1,8 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Independently installable GNOME touch extensions
-License:        GPL-2.0-only AND GPL-3.0-only AND GPL-3.0-or-later
+License:        GPL-2.0-or-later AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
 Source0:        convergence-shell.zip
 Source1:        touchup.zip
@@ -41,7 +41,7 @@ enhancements. Features can be enabled independently in its preferences.
 
 %package -n gnome-shell-extension-touchshell
 Summary:        Touchshell touchscreen helpers for GNOME Shell
-License:        GPL-2.0-only
+License:        GPL-2.0-or-later
 Requires:       gnome-shell >= 49
 Requires:       gnome-extensions-app
 
@@ -99,6 +99,9 @@ done
 %{_datadir}/gnome-shell/extensions/touchshell@touchshell.com
 
 %changelog
+* Thu Sep 03 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-7
+- Align package SPDX expressions with the upstream license declarations
+
 * Thu Sep 03 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-6
 - Document and serialize the fail-closed autobuild pipeline
 - Include the final synchronized GNOME 51 TouchUp payload
