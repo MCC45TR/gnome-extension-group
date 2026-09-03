@@ -8,6 +8,7 @@ trap 'rm -rf -- "$task_tmp"' EXIT
 git clone --depth 1 https://github.com/MCC45TR/convergence-shell.git "$task_tmp/convergence-shell"
 git clone --depth 1 https://github.com/MCC45TR/gnome-extension-touchup.git "$task_tmp/touchup"
 git clone --depth 1 https://github.com/MCC45TR/touchshell.git "$task_tmp/touchshell"
+git clone --depth 1 https://github.com/MCC45TR/nabu-tablet-controls.git "$task_tmp/nabu-tablet-controls"
 
 (
     cd "$task_tmp/touchup"
@@ -26,7 +27,7 @@ package_tree() {
     )
 }
 
-mkdir "$task_tmp/convergence-package" "$task_tmp/touchshell-package"
+mkdir "$task_tmp/convergence-package" "$task_tmp/touchshell-package" "$task_tmp/nabu-package"
 cp -a \
     "$task_tmp/convergence-shell/extension.js" \
     "$task_tmp/convergence-shell/prefs.js" \
@@ -48,10 +49,21 @@ cp -a \
     "$task_tmp/touchshell/schemas" \
     "$task_tmp/touchshell/LICENSE" \
     "$task_tmp/touchshell-package/"
+cp -a \
+    "$task_tmp/nabu-tablet-controls/gnome/extension.js" \
+    "$task_tmp/nabu-tablet-controls/gnome/prefs.js" \
+    "$task_tmp/nabu-tablet-controls/gnome/metadata.json" \
+    "$task_tmp/nabu-tablet-controls/gnome/schemas" \
+    "$task_tmp/nabu-tablet-controls/gnome/integration" \
+    "$task_tmp/nabu-tablet-controls/translations" \
+    "$task_tmp/nabu-tablet-controls/LICENSE" \
+    "$task_tmp/nabu-tablet-controls/README.md" \
+    "$task_tmp/nabu-package/"
 
 mkdir -p "$repo_dir/sources"
 package_tree "$task_tmp/convergence-package" "$repo_dir/sources/convergence-shell.zip"
 package_tree "$task_tmp/touchshell-package" "$repo_dir/sources/touchshell.zip"
+package_tree "$task_tmp/nabu-package" "$repo_dir/sources/nabu-tablet-controls.zip"
 
 unzip -q "$task_tmp/touchup/dist/"*.zip -d "$task_tmp/touchup-package"
 package_tree "$task_tmp/touchup-package" "$repo_dir/sources/touchup.zip"
@@ -65,4 +77,5 @@ done
     printf 'convergence-shell %s\n' "$(git -C "$task_tmp/convergence-shell" rev-parse HEAD)"
     printf 'gnome-extension-touchup %s\n' "$(git -C "$task_tmp/touchup" rev-parse HEAD)"
     printf 'touchshell %s\n' "$(git -C "$task_tmp/touchshell" rev-parse HEAD)"
+    printf 'nabu-tablet-controls %s\n' "$(git -C "$task_tmp/nabu-tablet-controls" rev-parse HEAD)"
 } > "$repo_dir/sources.lock"

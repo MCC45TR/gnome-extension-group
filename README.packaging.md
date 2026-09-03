@@ -1,8 +1,9 @@
 # GNOME Extension Group
 
-One Fedora source package produces a small catalog package and three fully
+One Fedora source package produces a small catalog package and four fully
 independent extension RPMs:
 
+- `gnome-shell-extension-nabu-tablet-controls`
 - `gnome-shell-extension-convergence`
 - `gnome-shell-extension-touchup`
 - `gnome-shell-extension-touchshell`
@@ -19,6 +20,7 @@ The packaged downstream source forks are:
 - https://github.com/MCC45TR/convergence-shell
 - https://github.com/MCC45TR/gnome-extension-touchup
 - https://github.com/MCC45TR/touchshell
+- https://github.com/MCC45TR/nabu-tablet-controls
 
 ## Automated updates
 
