@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install build dependencies
-        run: sudo apt-get update && sudo apt-get install -y jq libglib2.0-bin zip unzip
+        run: sudo apt-get update && sudo apt-get install -y jq libglib2.0-dev-bin zip unzip
       - name: Rebuild deterministic source payloads
         run: ./tools/update-sources.sh
       - name: Validate RPM source package
