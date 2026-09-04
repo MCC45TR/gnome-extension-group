@@ -1,6 +1,6 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Independently installable GNOME touch extensions
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
@@ -144,6 +144,9 @@ test "$(find nabu/translations -name '*.po' | wc -l)" = 27
 %{_userunitdir}/graphical-session.target.wants/nabu-gnome-extension-enable.service
 
 %changelog
+* Fri Sep 04 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-9
+- Rebuild synchronized extension payloads
+
 * Thu Sep 03 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-8
 - Add Nabu Tablet Controls as a fourth independently installable extension.
 - Migrate its extension identity to nabulinuxproject@mcc45tr.
