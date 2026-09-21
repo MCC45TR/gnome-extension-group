@@ -1,6 +1,6 @@
 Name:           gnome-extension-group
 Version:        1.0.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Independently installable GNOME touch extensions
 License:        GPL-2.0-or-later AND GPL-3.0-or-later
 URL:            https://github.com/MCC45TR/gnome-extension-group
@@ -144,6 +144,9 @@ test "$(find nabu/translations -name '*.po' | wc -l)" = 27
 %{_userunitdir}/graphical-session.target.wants/nabu-gnome-extension-enable.service
 
 %changelog
+* Mon Sep 21 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-10
+- Rebuild synchronized extension payloads
+
 * Fri Sep 04 2026 mcc45tr <mcc45tr@gmail.com> - 1.0.0-9
 - Rebuild synchronized extension payloads
 
